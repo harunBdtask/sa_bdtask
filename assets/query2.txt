@@ -1,0 +1,14 @@
+assets\dist\js\common.active.js
+
+var timeText = new Date();
+$('#testtitle').prepend('<p style="font-size:10px">Print Date: '+timeText.toLocaleString()+'</p>');
+$('#printContent').prepend('<p style="font-size:10px">Print Date: '+timeText.toLocaleString()+'</p>');
+
+
+//05-jun-22
+ALTER TABLE `wh_supplier_information` ADD `supplier_type` TINYINT(2) NOT NULL COMMENT '1=local, 2=foreign' AFTER `country`;
+
+http://128.199.72.199/beta/app/Modules/sup.zip
+
+//09-jun-22
+http://128.199.72.199/beta/app/Modules/bb.zip

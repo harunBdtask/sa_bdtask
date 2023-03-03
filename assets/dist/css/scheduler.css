@@ -1,0 +1,283 @@
+
+
+.scheduler-content > *:first-child{
+    width: 12.6666666667%;
+}
+.scheduler-content > *:last-child{
+    width: 87.3333333333%;
+}
+
+
+.scheduler-sidebar{
+    /*width: 300px;*/
+}
+
+
+
+.scheduler-body {
+    background-color: #fff;
+    padding: 15px;
+    /* width: 100%; */
+    border-radius: 6px;
+    position: relative;
+    /*padding: 50px 30px 20px 30px;*/
+    padding: 20px 30px 20px 30px;
+    /* height: calc(100vh - 170px); */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+.doctor-card_header{
+    margin-bottom: 15px;
+}
+
+.doctor-card:nth-child(2n) .doctor-card_header{
+    color: #fff;
+}
+
+.doctor-card {
+    min-height: 500px;
+    background-color: #d6d6d6;
+    border: 1px solid #bfbfbf;
+    border-radius: 20px;
+    padding: 15px;
+    margin-right: 15px;
+    position: relative;
+    width: 300px;
+    min-width: 300px;
+    margin-bottom: 0;
+}
+.doctor-card:nth-child(even){
+    background-color: #404d55;
+}
+.doctor-card:last-child{
+    margin-right: 0;
+}
+
+.doctor-card:nth-child(even) .status-title{
+    color: #fff;
+}
+
+
+
+
+.add-btn {
+    top: -28px;
+    right: -23px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.add-btn svg{
+    fill: #25a586;
+    height: 30px;
+    width: 30px;
+}
+
+
+.add-btn-rooms{
+    top: -30px;
+    left: 30px;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+
+.card-icon svg {
+    height: 26px;
+    width: 26px;
+    margin-right: 6px;
+}
+.card-text{
+    font-weight: 900;
+    font-size: 16px;
+}
+.card-icon_cross{
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}
+.card-icon_cross svg {
+    height: 20px;
+    width: 20px;
+    fill: #333;
+}
+
+.doctor-card:nth-child(even) .card-icon_cross svg{
+    fill: #fff;
+}
+
+
+
+.block-content{
+    /*height: calc(45vh - 0px);*/
+    position: relative;
+    height: 426px;
+}
+.box-wrap{
+    /*margin-bottom: 1rem;*/
+}
+.status-block {
+    min-height: 8px;
+    /* min-height: 65px; */
+    border-radius: 6px;
+    background-color: #39d2c0;
+    margin-bottom: 4px;
+    border: 3px solid #39d2c0;
+    cursor: pointer;
+}
+.status-block:last-child{
+    margin-bottom: 0;
+}
+
+
+.status-block_icon svg {
+    height: 10px;
+}
+.status-block_icon .status-block_icon--lg {
+    height: 16px;
+}
+
+
+.block-content.ps > .ps__rail-y > .ps__thumb-y {
+    background-color: #3d72d7;
+    border-radius: 5px;
+}
+
+
+.not-available {
+    background-color: #f17104;
+    border-color: #f17104;
+}
+.booked{
+    background-color: #ED0423;
+    border-color: #ED0423;
+}
+.confirmed{
+    border-color: green;
+}
+.status-block_lg{
+    min-height: 70px;
+}
+.status-block_lg.confirmed,
+.status-block_lg.not-available,
+.status-block_lg.booked {
+    padding: 7px;
+}
+
+.scheduler-time {
+    margin-top: 142px;
+    height: 463px;
+}
+.scheduler-time li {
+    background-color: #d6d6d6;
+    padding: 20px 15px;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1rem;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+.scheduler-time li:nth-child(even){
+    color: #fff;
+    background-color: #404d55;
+}
+.legend-content{
+    margin-right: 15px;
+}
+.legend {
+    height: 12px;
+}
+.legend-text {
+    /*font-size: 0.78125rem;*/
+    font-weight: 600;
+    margin-left: 5px;
+    line-height: 12px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+@media (min-width: 992px){
+    .appointment-modal .modal-lg, 
+    .appointment-modal .modal-xl {
+        max-width: 660px;
+    }
+}
+.appointment-modal .modal-body {
+    padding: 2rem;
+}
+
+.appointment-modal .modal-content {
+    background-color: #15b086;
+    border: 4px solid #064b3a;
+    border-radius: 10px;
+}
+.appointment-modal .col-form-label, .appointment-modal .form-label {
+    font-weight: 600;
+    color: #fff;
+    font-size: 14px;
+    padding: 0;
+}
+.appointment-modal  .form-control {
+    border: 0;
+    height: 28px;
+}
+.btn-bundle .btn{
+
+}
+.btn-bundle .btn-secondary {
+    background-color: #7da39a;
+    border-color: #7da39a;
+    font-weight: 600;
+}
+.btn-bundle .btn-secondary.disabled,
+.btn-bundle .btn-secondary:disabled {
+    opacity: 1;
+    background-color: #9dcfc3;
+    border-color: #9dcfc3;
+}
+.date-box,
+.time-box{
+    background-color: #fff;
+    padding: 2px 9px;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-weight: 800;
+    font-size: 14px;
+}
+.date-box{
+    color: #25a586;
+}.time-box{
+    color: #075341;
+}
+
+
+.status-block_label {
+    background-color: #E6E6E6;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    padding: 3px;
+    font-weight: 600;
+    line-height: 12px;
+    color: #70737c;
+}
+
+.status-block_label:last-child{
+    margin-bottom: 6px;
+}
+.status-block_label strong {
+    font-weight: 700;
+    color: #212529;
+}
+.appointment-date {
+    font-size: 17px;
+    font-weight: 600;
+    color: #4d4d4d;
+}

@@ -1,0 +1,131 @@
+$data['setting']    = $this->bdtaskt1m12c12_02_CmModel->bdtaskt1m1_03_getRow('setting');
+<span style="display:none;" id="testtitle">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img src="<?php echo base_url() . $setting->logo; ?>" class="img-responsive" alt=""><strong><?php echo $setting->title; ?></strong><br>
+            <?php echo $setting->address; ?>
+        </div>
+    </div>
+    <hr>
+    <h4>
+        <center><?php echo $title; ?></center>
+    </h4>
+</span>
+var title = $("#testtitle").html();
+title: '',
+                    messageTop: title,
+
+
+function makePdf(id) {
+        preloader_ajax();
+        $.ajax({
+            async: true,
+            success: function(data) {
+                getPDF(id);
+            }
+        }); 
+    }
+
+downloadContent
+<div class="modal-body" id="printContent">
+    <button type="button" class="btn btn-success" onclick="printContent('printContent')"><?php echo get_phrases(['print']);?></button>
+                <button type="button" class="btn btn-info" onclick="makePdf('printContent')"><?php echo get_phrases(['download']);?></button>
+//common.active.js
+function getPDF(id){
+    var HTML_Width = $("#"+id).width();
+    var HTML_Height = $("#"+id).height();
+    var top_left_margin = 15;
+    var PDF_Width = HTML_Width+(top_left_margin*2);
+    var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
+    var canvas_image_width = HTML_Width;
+    var canvas_image_height = HTML_Height;
+    var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
+    html2canvas($("#"+id)[0],{allowTaint:true}).then(function(canvas) {
+        canvas.getContext('2d');
+        // console.log(canvas.height+"  "+canvas.width);
+        var imgData = canvas.toDataURL("image/jpeg", 1.0);
+        var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
+        pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+        for (var i = 1; i <= totalPDFPages; i++) { 
+            pdf.addPage(PDF_Width, PDF_Height);
+            pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+        }
+        pdf.save("HTML-Document.pdf");
+        $('.page-loader-wrapper').hide();
+    });
+};
+
+//head.php
+<script src="<?php echo base_url()?>/assets/plugins/canvas-pdf/jspdf.min.js"></script>
+        <script src="<?php echo base_url()?>/assets/plugins/canvas-pdf/html2canvas.js"></script>
+
+public function bdtaskt1m8_09_approveVoucher($id)
+    {
+        $vaucherdata = $this->db->table('acc_vaucher')
+            ->select('*')
+            ->where('VNo', $id)
+            ->get()->getResult();
+        $action = '';
+        $ApprovedBy = session('id');
+        $approvedDate = date('Y-m-d H:i:s');
+        if ($vaucherdata) {
+            foreach ($vaucherdata as $row) {
+                $transationinsert = array(
+                    'vid'            =>  $row->id,
+                    'FyID'           =>  $row->fyear,
+                    'VNo'            =>  $row->VNo,
+                    'Vtype'          =>  $row->Vtype,
+                    'referenceNo'    =>  $row->referenceNo,
+                    'VDate'          =>  $row->VDate,
+                    'COAID'          =>  $row->COAID,
+                    'Narration'      =>  $row->Narration,
+                    'ledgerComment'  =>  $row->ledgerComment,
+                    'Debit'          =>  $row->Debit,
+                    'Credit'         =>  $row->Credit,
+                    'IsPosted'       =>  1,
+                    'RevCodde'       =>  $row->RevCodde,
+                    'subType'        =>  $row->subType,
+                    'subCode'        =>  $row->subCode,
+                    'IsAppove'       =>  1,
+                    'CreateBy'       => $ApprovedBy,
+                    'CreateDate'     => $approvedDate
+                );
+                $this->db->table('acc_transaction')->insert($transationinsert);
+                $revercetransationinsert = array(
+                    'vid'            =>  $row->id,
+                    'FyID'           =>  $row->fyear,
+                    'VNo'            =>  $row->VNo,
+                    'Vtype'          =>  $row->Vtype,
+                    'referenceNo'    =>  $row->referenceNo,
+                    'VDate'          =>  $row->VDate,
+                    'COAID'          =>  $row->RevCodde,
+                    'Narration'      =>  $row->Narration,
+                    'ledgerComment'  =>  $row->ledgerComment,
+                    'Debit'          =>  $row->Credit,
+                    'Credit'         =>  $row->Debit,
+                    'IsPosted'       =>  1,
+                    'RevCodde'       =>  $row->COAID,
+                    'subType'        =>  $row->subType,
+                    'subCode'        =>  $row->subCode,
+                    'IsAppove'       =>  1,
+                    'CreateBy'       => $ApprovedBy,
+                    'CreateDate'     => $approvedDate
+                );
+                $this->db->table('acc_transaction')->insert($revercetransationinsert);
+            }
+        }
+        $action = 1;
+        $upData = array(
+            'VNo'          => $id,
+            'isApproved'   => $action,
+            'approvedBy'   => $ApprovedBy,
+            'approvedDate' => $approvedDate,
+            'status'       => $action
+        );
+        return $this->db->table('acc_vaucher')->where('VNo', $id)->update($upData);
+    }
+
+$result = $this->bdtaskt1m12c12_02_CmModel->bdtaskt1m1_01_Insert('acc_vaucher', $voucherdata);
+        $this->bdtaskt1m12c12_01_item_receiveModel->bdtaskt1m8_09_approveVoucher($getVouchern);
+
+$item_price = ($po_details->price + $po_details->vat_amount) * $quantity;
